@@ -1,0 +1,103 @@
+
+.routine-list-container {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.routine-list-container h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+
+.routine-list-container .success {
+    background: #d4edda;
+    color: #155724;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    text-align: center;
+}
+
+
+.routine-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.routine-table th,
+.routine-table td {
+    border: 1px solid #e1e1e1;
+    padding: 10px 12px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.routine-table th {
+    background: #f9f9f9;
+    font-weight: 600;
+}
+
+
+.status.active {
+    color: green;
+    font-weight: 600;
+}
+.status.inactive {
+    color: red;
+    font-weight: 600;
+}
+
+
+.table-actions {
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.routine-table a {
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 10px;
+}
+.routine-table a:hover {
+    text-decoration: underline;
+}
+
+.routine-table form {
+    display: inline;
+}
+
+.routine-table button {
+    background: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-weight: bold;
+}

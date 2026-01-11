@@ -1,0 +1,42 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/*  02. Link CSS START
+/*----------------------------------------*/
+.links__area {
+  margin-top: 30px;
+  .links__card {
+    .link__header {
+      background: var(--tp-theme-light-green);
+      border-top: 2px solid var(--tp-theme-green);
+      border-bottom: 2px solid var(--tp-theme-green);
+      h3 {
+        font-size: 21px;
+        text-align: center;
+        padding: 7px 20px;
+        margin: 0;
+      }
+    }
+    .link__content {
+      padding: 9px 20px;
+      background: var(--tp-common-white);
+      width: 100%;
+      min-height: 150px;
+      ul {
+        list-style: none;
+        li {
+          margin-bottom: 7px;
+          i {
+            margin-right: 10px;
+            font-size: 17px;
+          }
+          a {
+            font-size: 17px;
+            color: blue;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}

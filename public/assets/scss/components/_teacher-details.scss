@@ -1,0 +1,34 @@
+@use "../utils" as *;
+
+/*--
+    -  teacher details css
+-----------------------------------------*/
+.teacher__mgs {
+  padding: 50px 0;
+
+  .teacher__img {
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--tp-border-header);
+    border-radius: 7px;
+    padding: 10px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .mgs__description {
+    h3 {
+      color: var(--tp-theme-orange);
+      font-weight: 700;
+    }
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
+}

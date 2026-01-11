@@ -1,0 +1,96 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/*  00. TEACHER CSS START
+/*----------------------------------------*/
+
+.teachers__area {
+  padding: 30px 0;
+}
+
+.bg-white {
+  background: var(--tp-common-white);
+  padding: 15px 0;
+}
+.teacher__header {
+  background: var(--tp-theme-green-grediant);
+  padding: 10px 0;
+  border-top: 2px solid var(--tp-theme-green);
+  border-bottom: 2px solid var(--tp-theme-green);
+  h3 {
+    text-align: center;
+    margin-bottom: 0;
+  }
+}
+
+.teacher__card {
+  .card__details {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: var(--tp-common-white);
+    .teacher__info {
+      width: 100%;
+      min-height: 84px;
+      background: linear-gradient(260deg, #3f51b5, #ffffff, #3f51b5);
+      margin-top: 83px;
+      position: relative;
+      border-top: 2px dashed #3f51b5;
+      .teacher__img {
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+        border-radius: 50%;
+        border: 2px dashed #673ab7;
+        box-sizing: border-box;
+        position: absolute;
+        top: -14%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        img {
+          max-width: 200px;
+          width: 100%;
+          object-fit: cover;
+          top: 50%;
+        }
+      }
+      img {
+        position: absolute;
+        top: 73%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: auto;
+      }
+    }
+    .profile__content {
+      box-sizing: border-box;
+      padding: 7px 10px;
+      background: linear-gradient(45deg, #03a9f4, #3f51b5);
+      text-align: center;
+      color: #fff;
+      h3 {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      p {
+        color: var(--tp-common-white);
+        font-size: 18px;
+        font-weight: 500;
+      }
+      .profile__contact {
+        display: inline-flex;
+        gap: 10px;
+        span {
+          width: 40px;
+          line-height: 40px;
+          background: var(--tp-theme-green);
+          border-radius: 7px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

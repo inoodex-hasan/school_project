@@ -1,0 +1,61 @@
+
+.students-edit .container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+}
+
+.students-edit h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    text-align: center;
+    color: #2c3e50;
+}
+
+
+.students-edit form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #34495e;
+    font-size: 14px;
+}
+
+
+.students-edit form input[type="text"],
+.students-edit form input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.students-edit form input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+
+.students-edit form button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.students-edit form button:hover {
+    background: #1e8449;
+}

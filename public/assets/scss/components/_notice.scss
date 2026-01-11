@@ -1,0 +1,141 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/*  02. Notice CSS START
+/*----------------------------------------*/
+.notice__wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  @media #{$xs} {
+    grid-template-columns: 1fr;
+  }
+}
+.notice__area {
+  .notice__card {
+    .notice__header {
+      background: var(--tp-theme-orange-grediant);
+      border-top: 2px solid var(--tp-theme-orange);
+      border-bottom: 2px solid var(--tp-theme-orange);
+      h3 {
+        padding: 8px 20px;
+        font-size: 22px;
+        font-weight: 700;
+        text-align: center;
+        margin: 0;
+      }
+    }
+    .notice__content {
+      background: var(--tp-common-white);
+      padding: 10px;
+      width: 100%;
+      min-height: 260px;
+      .notice_row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 4px;
+        .notice_date {
+          font-size: 14px;
+          color: var(--tp-common-black);
+          background: var(--tp-theme-date-bg);
+          padding: 3px 2px;
+          font-weight: 700;
+          max-width: 89px;
+          width: 100%;
+        }
+        .notice_text {
+          flex: 1;
+          a {
+            font-size: 17px;
+            color: blue;
+          }
+        }
+      }
+      .notice_btn {
+        margin-top: 20px;
+        a {
+          border-radius: 5px;
+          padding: 5px 20px;
+          background: var(--tp-theme-orange-btn);
+          font-size: 18px;
+          font-weight: 700;
+          color: var(--tp-common-white);
+          box-shadow: 1px 1px 7px -3px #000;
+        }
+      }
+    }
+  }
+}
+
+.teacher__message {
+  .message__card {
+    .message__header {
+      background: var(--tp-theme-green-grediant);
+      border-top: 2px solid var(--tp-theme-green);
+      border-bottom: 2px solid var(--tp-theme-green);
+      h3 {
+        padding: 8px 20px;
+        font-size: 22px;
+        font-weight: 700;
+        text-align: center;
+        margin: 0;
+      }
+    }
+    .teacher__content {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      background: var(--tp-common-white);
+      .teacher__img {
+        max-width: 100px;
+        width: 100%;
+        height: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .teacher__info {
+        ul {
+          list-style: none;
+          li {
+            font-size: 16px;
+            color: var(--tp-common-black);
+            i {
+              color: var(--tp-theme-green);
+              font-size: 16px;
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+    }
+    .teacher__quote {
+      //   background: var(--tp-theme-light-green);
+      background: linear-gradient(to bottom, #e0f7e0, #c1e1c1);
+      padding: 30px 40px;
+      p {
+        font-size: 18px;
+        text-align: center;
+        position: relative;
+        &::before {
+          content: "\f10d";
+          position: absolute;
+          font-family: "Font Awesome 6 Pro";
+          top: -5px;
+          left: 0;
+          color: var(--tp-theme-green);
+        }
+        &::after {
+          content: "\f10e";
+          position: absolute;
+          font-family: "Font Awesome 6 Pro";
+          bottom: -5px;
+          right: -10px;
+          color: var(--tp-theme-green);
+        }
+      }
+    }
+  }
+}

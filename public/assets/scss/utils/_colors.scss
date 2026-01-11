@@ -1,0 +1,36 @@
+$colors: (
+  common: (
+    white: #ffffff,
+    black: #000,
+  ),
+  heading: (
+    primary: #000,
+  ),
+  grey: (
+    1: #e6e5e5,
+  ),
+  text: (
+    body: #000,
+    1: #000,
+  ),
+  theme: (
+    orange: #ff5722,
+    purple: #673ab7,
+    blue: #066ec5,
+    orange-grediant: linear-gradient(260deg, #ff5722, #ffffff, #ff5722),
+    green: #47970e,
+    text-green: #93de02,
+    green-grediant: linear-gradient(260deg, #197a17, #ffffff, #167716),
+    light-green: linear-gradient(276deg, #8bc34a, #ffffff, #8bc34a),
+    orange-btn: linear-gradient(174deg, #ff9800, #ff5722),
+    green-btn: linear-gradient(19deg, #107314, #93db3f),
+    header-bg: linear-gradient(167deg, #9e9e9e, #ffffff, #9e9e9e),
+    date-bg: linear-gradient(67deg, #b1b1b1, #ffffff, #ffffff, #b1b1b1),
+    golden-bg: linear-gradient(271deg, #d19d00, #fff59f, #d19d00),
+    golden: #d6a50f,
+    footer-bg: linear-gradient(0deg, #101017 0%, #252530 100%),
+  ),
+  border: (
+    header: #0000001a,
+  ),
+);

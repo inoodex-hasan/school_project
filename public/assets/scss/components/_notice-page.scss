@@ -1,0 +1,73 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/*  02. NOTICE PAGE CSS START
+/*----------------------------------------*/
+.notice__search {
+  background: var(--tp-common-white);
+  border-radius: 7px;
+  padding: 20px;
+  margin-bottom: 15px;
+
+  h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+  .form-select {
+    line-height: 28px !important;
+  }
+  .list {
+    width: 100%;
+  }
+}
+
+.all__notice {
+  .notice__item {
+    background: var(--tp-common-white);
+    border-radius: 7px;
+    padding: 20px;
+    margin-bottom: 15px;
+    .notice__title {
+      flex-wrap: wrap;
+      h3 {
+        font-size: 25px;
+        color: var(--tp-theme-orange);
+        @media #{$xs} {
+          font-size: 18px;
+        }
+      }
+      p {
+        color: #2c2c2c;
+        font-size: 14px;
+        font-weight: 500;
+        i {
+          margin-right: 5px;
+        }
+      }
+    }
+    .notice__btn {
+      .notice__category {
+        background: var(--tp-grey-1);
+        padding: 0px 15px;
+        border-radius: 7px;
+        line-height: 36px;
+        i {
+          font-size: 10px;
+          margin-right: 5px;
+        }
+      }
+      button {
+        border: 1px solid var(--tp-theme-orange);
+        color: var(--tp-theme-orange);
+        padding: 5px 20px;
+        font-size: 14px;
+        border-radius: 30px;
+        font-weight: 600;
+        &:hover {
+          background: var(--tp-theme-orange);
+          color: var(--tp-common-white);
+        }
+      }
+    }
+  }
+}

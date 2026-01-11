@@ -1,0 +1,149 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/*  00. Hero CSS START
+/*----------------------------------------*/
+.hero__area {
+  padding: 30px 0;
+  .slider__wrapper {
+    width: 100%;
+    background: var(--tp-common-white);
+    padding: 10px;
+    border-radius: 10px;
+    padding-bottom: 45px;
+    position: relative;
+    .slide__img {
+      img {
+        width: 100%;
+        position: absolute;
+        width: 100%;
+        z-index: 9;
+        bottom: 0;
+      }
+    }
+    .slider__container {
+      width: 100%;
+
+      .slide_item {
+        img {
+          width: 100%;
+          height: 380px;
+          object-fit: cover;
+        }
+      }
+      .slick-prev,
+      .slick-next {
+        position: absolute;
+        bottom: -32px;
+        transform: translateX(-50%);
+        z-index: 10;
+        color: #fff;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: linear-gradient(174deg, #ff9800, #ff5722);
+        box-shadow: 0px 0px 6px -2px #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .slick-next {
+        right: 38%;
+        margin-bottom: 0;
+      }
+      .slick-prev {
+        left: 48%;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .slider__person {
+    @media #{$xs} {
+      margin-bottom: 20px;
+    }
+    .person__item {
+      background-color: var(--tp-common-white);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow: hidden;
+      .person__img {
+        width: 100px;
+        height: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .person__content {
+        h4 {
+          color: var(--tp-theme-orange);
+        }
+        a {
+          color: blue;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .class__info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    @media #{$xs} {
+      margin-bottom: 20px;
+    }
+    .class__card {
+      background: var(--tp-common-white);
+      border-radius: 7px;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      gap: 10px;
+      .class__img {
+        width: 50px;
+        height: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .class__text {
+        p {
+          margin: 0;
+          font-size: 18px;
+          color: blue;
+        }
+      }
+    }
+  }
+
+  .school__info {
+    background: var(--tp-theme-golden-bg);
+    border: 1px solid var(--tp-theme-golden);
+    border-radius: 7px;
+    padding: 15px 0;
+    text-align: center;
+    @media #{$xs} {
+      margin-bottom: 20px;
+    }
+    ul {
+      list-style: none;
+      li {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        i {
+          margin-right: 10px;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

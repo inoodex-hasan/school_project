@@ -1,0 +1,88 @@
+/* Result Index Page Styles */
+
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Add Result Button */
+.container > a {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    background: #28a745;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.container > a:hover {
+    background: #218838;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+thead {
+    background: #f8f9fa;
+}
+
+thead th {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: bold;
+    color: #444;
+}
+
+tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #dee2e6;
+    color: #555;
+}
+
+/* Action Button */
+form {
+    display: inline;
+}
+
+button {
+    background: #dc3545;
+    color: #fff;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #c82333;
+}
+
+/* Empty table handling */
+tbody tr:hover {
+    background: #f1f1f1;
+}

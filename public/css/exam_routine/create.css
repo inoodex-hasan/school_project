@@ -1,0 +1,96 @@
+
+.exam-routine-wrapper {
+    padding: 20px;
+}
+
+.exam-routine-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.exam-routine-container h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+
+.exam-routine-container form {
+    margin-bottom: 20px;
+}
+
+.exam-routine-container input[type="text"],
+.exam-routine-container input[type="file"] {
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.exam-routine-container button {
+    background: #007bff;
+    color: #fff;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
+}
+
+.exam-routine-container button:hover {
+    background: #0056b3;
+}
+
+
+.exam-routine-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.exam-routine-container ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease;
+}
+
+.exam-routine-container ul li:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.exam-routine-container ul li a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+.exam-routine-container ul li a:hover {
+    color: #0056b3;
+}
+
+
+.exam-routine-container ul li form button {
+    background: #dc3545;
+    padding: 6px 14px;
+    font-size: 13px;
+    border-radius: 6px;
+}
+
+.exam-routine-container ul li form button:hover {
+    background: #a71d2a;
+}

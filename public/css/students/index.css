@@ -1,0 +1,124 @@
+/* Container */
+.student-list-container {
+    padding: 20px;
+    background: #f9fafb;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Page Title */
+.student-list-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Top Action Bar */
+.table-actions {
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+/* Table Styles */
+.student-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.student-table thead {
+    background: #2563eb;
+    color: #fff;
+}
+
+.student-table th, 
+.student-table td {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.student-table th {
+    font-weight: 600;
+}
+
+
+/* No Data Row */
+.no-data {
+    text-align: center;
+    padding: 20px;
+    color: #6b7280;
+    font-style: italic;
+}
+
+/* Photo */
+.student-photo {
+    border-radius: 8px;
+    object-fit: cover;
+    height: 60px;
+    width: 60px;
+    border: 2px solid #e5e7eb;
+}
+
+/* Action Buttons */
+.btn-secondary, .btn-danger {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-secondary {
+    background: #6b7280;
+    color: #fff;
+}
+.btn-secondary:hover {
+    background: #4b5563;
+}
+
+.btn-danger {
+    background: #dc2626;
+    color: #fff;
+    border: none;
+}
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+.filter-form {
+    margin: 15px 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.filter-form input,
+.filter-form select {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.filter-form button,
+.filter-form .btn-light {
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+

@@ -1,0 +1,14 @@
+@use "../utils" as *;
+
+.page__details {
+  background: var(--tp-grey-1);
+  padding: 50px 0;
+  .page__history {
+    background: var(--tp-common-white);
+    border-radius: 7px;
+    padding: 30px 15px;
+    p {
+      font-size: 16px;
+    }
+  }
+}

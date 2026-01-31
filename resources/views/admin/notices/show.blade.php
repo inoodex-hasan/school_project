@@ -1,45 +1,64 @@
 @extends('admin.adminlayout')
 
 @section('content')
-<div class="container mt-5">
-    <div class="card shadow-sm border-0">
-        <div class="card-body">
-            {{-- Title --}}
-            <h2 class="card-title mb-3">{{ $notice->title }}</h2>
+    <div class="container py-5">
+        {{-- Back Button --}}
+        <div class="mb-4">
+            <a href="{{ route('admin.notices.index') }}" class="text-decoration-none text-muted">
+                <i class="fas fa-arrow-left mr-1"></i> Back to All Notices
+            </a>
+        </div>
 
-            {{-- Meta --}}
-            <div class="mb-3">
-                <small class="text-muted">Posted on {{ $notice->created_at->format('d M Y') }}</small>
-                @if($notice->status)
-                    <span class="badge badge-success ms-2">Active</span>
-                @else
-                    <span class="badge badge-danger ms-2">Inactive</span>
-                @endif
+
+
+        {{-- Main Notice Content Card --}}
+        <div class="card shadow border-0 overflow-hidden">
+            <div class="card-header bg-white border-bottom py-3">
+                <h2 class="h4 mb-0 text-dark font-weight-bold">{{ $notice->title }}</h2>
+            </div>
+            <div class="card-body p-4 p-md-5">
+                <div class="notice-content text-dark lead" style="line-height: 1.8;">
+                    {!! $notice->content !!}
+                </div>
             </div>
 
-            {{-- Content --}}
-            <div class="card-text mb-4">
-                {!! $notice->content !!}
-            </div>
+            {{-- Footer Actions --}}
+            <div class="card-footer bg-light p-4 d-flex justify-content-end">
+                <a href="{{ route('admin.notices.edit', $notice->id) }}" class="btn btn-warning px-4 mr-3">
+                    <i class="fas fa-edit mr-1"></i> Edit Notice
+                </a>
 
-            {{-- Actions (always visible) --}}
-            <div class="d-flex">
-                <a href="{{ route('admin.notices.edit', $notice->id) }}" class="btn btn-warning mr-2">Edit</a>
-                <form action="{{ route('admin.notices.destroy', $notice->id) }}" method="POST" 
-                      onsubmit="return confirm('Are you sure you want to delete this notice?');">
-                    @csrf 
+                <form action="{{ route('admin.notices.destroy', $notice->id) }}" method="POST"
+                    onsubmit="return confirm('Are you sure you want to delete this notice? This action cannot be undone.');">
+                    @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-outline-danger px-4">
+                        <i class="fas fa-trash-alt mr-1"></i> Delete
+                    </button>
                 </form>
             </div>
         </div>
     </div>
-</div>
+
+    <style>
+        .notice-content {
+            color: #2d3436;
+            word-wrap: break-word;
+        }
+
+        .notice-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .badge {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .border-primary {
+            border-width: 2px !important;
+        }
+    </style>
 @endsection
-
-
-
-<!-- @push('styles')
-<link rel="stylesheet" href="{{ asset('css/notice/show.css') }}">
-@endpush -->
-

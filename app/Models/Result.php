@@ -3,29 +3,50 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Result extends Model
 {
-       protected $fillable = ['student_id', 'exam_type_id', 'exam_year', 'grade'];
+    use SoftDeletes;
 
-public function student()
-{
-    return $this->belongsTo(Student::class);
-}
+    protected $fillable = ['student_id', 'exam_type_id', 'exam_year', 'grade'];
 
-public function class()
-{
-    return $this->belongsTo(SchoolClass::class, 'class_id');
-}
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
 
-public function section()
-{
-    return $this->belongsTo(Section::class, 'section_id');
-}
+    /**
+     * Get the student that owns the result.
+     */
+    public function student(): BelongsTo
+    {
+        return $this->belongsTo(Student::class);
+    }
 
- public function examType()
+    /**
+     * Get the class associated with the result.
+     */
+    public function class(): BelongsTo
+    {
+        return $this->belongsTo(SchoolClass::class, 'class_id');
+    }
+
+    /**
+     * Get the section associated with the result.
+     */
+    public function section(): BelongsTo
+    {
+        return $this->belongsTo(Section::class, 'section_id');
+    }
+
+    /**
+     * Get the exam type that owns the result.
+     */
+    public function examType(): BelongsTo
     {
         return $this->belongsTo(ExamType::class, 'exam_type_id');
     }
-
 }

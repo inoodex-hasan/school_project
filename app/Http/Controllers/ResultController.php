@@ -7,83 +7,110 @@ use App\Models\Student;
 use App\Models\SchoolClass;
 use App\Models\Section;
 use App\Models\ExamType;
-
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ResultController extends Controller
 {
-
-      public function getSections($classId)
+    /**
+     * Get sections for a given class (AJAX).
+     */
+    public function getSections($classId): JsonResponse
     {
-        return response()->json(
-            Section::where('class_id', $classId)
-                   ->select('id','name')
-                   ->get()
-        );
+        $sections = Section::where('class_id', $classId)
+            ->select('id', 'name')
+            ->get();
+
+        return response()->json($sections);
     }
 
-      public function getStudents($classId, $sectionId)
+    /**
+     * Get students for a given class and section (AJAX).
+     */
+    public function getStudents($classId, $sectionId): JsonResponse
     {
-        return response()->json(
-            Student::where('class_id', $classId)
-                   ->where('section_id', $sectionId)
-                   ->select('id','name','roll')
-                   ->get()
-        );
-    }
-public function index(Request $request)
-{
-    $classes = SchoolClass::all();
-    $results = Result::with('student');
-    $resultrs = Result::with('examType');
+        $students = Student::where('class_id', $classId)
+            ->where('section_id', $sectionId)
+            ->select('id', 'name', 'roll')
+            ->get();
 
-if ($request->filled('exam_year')) {
-    $results->where('exam_year', $request->exam_year);
-}
-
-
-    if ($request->filled('class_id')) {
-        $results->whereHas('student', function ($q) use ($request) {
-            $q->where('class_id', $request->class_id);
-        });
+        return response()->json($students);
     }
 
-    if ($request->filled('section_id')) {
-        $results->whereHas('student', function ($q) use ($request) {
-            $q->where('section_id', $request->section_id);
-        });
+    /**
+     * Display a listing of results.
+     */
+    public function index(Request $request)
+    {
+        $classes = SchoolClass::all();
+
+        $results = Result::with(['student', 'examType']);
+
+        if ($request->filled('exam_year')) {
+            $results->where('exam_year', $request->exam_year);
+        }
+
+        if ($request->filled('class_id')) {
+            $results->whereHas('student', function ($q) use ($request) {
+                $q->where('class_id', $request->class_id);
+            });
+        }
+
+        if ($request->filled('section_id')) {
+            $results->whereHas('student', function ($q) use ($request) {
+                $q->where('section_id', $request->section_id);
+            });
+        }
+
+        $results = $results->paginate(10);
+
+        return view('admin.result.index', compact('results', 'classes'));
     }
 
-    $results = $results->paginate(10);
+    /**
+     * Show the form for creating a new result.
+     */
+    public function create()
+    {
+        $examTypes = ExamType::where('status', 1)->get();
+        $classes = SchoolClass::orderBy('created_at', 'asc')->get();
+        $students = Student::all();
 
-    return view('admin.result.index', compact('results', 'classes'));
-}
+        return view('admin.result.create', compact('examTypes', 'students', 'classes'));
+    }
 
-public function create()
-{
-    $examTypes = ExamType::where('status', 1)->get();
-    $classes   = SchoolClass::orderBy('created_at', 'asc')->get();
-    $students  = Student::all();
-    return view('admin.result.create', compact('examTypes', 'students', 'classes'));
-}
+    /**
+     * Store a newly created result in storage.
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'student_id' => 'required|exists:students,id',
+            'exam_type_id' => 'required|exists:exam_types,id',
+            'exam_year' => 'required|integer|between:2000,' . date('Y'),
+            'grade' => 'required|in:A+,A,A-,B+,B,B-,C+,C,C-,D,F',
+        ]);
 
+        Result::create($validated);
 
-public function store(Request $request)
-{
-    $validated = $request->validate([
-        'student_id'   => 'required|exists:students,id',
-        'exam_type_id' => 'required|exists:exam_types,id',
-        'exam_year'    => 'required|integer|between:2000,' . date('Y'),
-        'grade'        => 'required|in:A+,A,A-,B+,B,B-,C+,C,C-,D,F',
-    ]);
+        return redirect()->route('admin.result.index')
+            ->with('success', 'Result added successfully.');
+    }
 
-    Result::create($validated);
+    /**
+     * Show the form for editing the specified result.
+     */
+    public function edit($id)
+    {
+        $result = Result::findOrFail($id);
+        $students = Student::all();
 
-    return redirect()->route('admin.result.index')
-                     ->with('success', 'Result added successfully.');
-}
+        return view('admin.result.edit', compact('result', 'students'));
+    }
 
-
+    /**
+     * Update the specified result in storage.
+     */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -99,6 +126,9 @@ public function store(Request $request)
             ->with('success', 'Result updated successfully!');
     }
 
+    /**
+     * Remove the specified result from storage.
+     */
     public function destroy($id)
     {
         $result = Result::findOrFail($id);
@@ -107,13 +137,4 @@ public function store(Request $request)
         return redirect()->route('admin.result.index')
             ->with('success', 'Result deleted successfully!');
     }
-
-public function edit($id)
-{
-    $result = Result::findOrFail($id);
-    $students = Student::all();
-    return view('admin.result.edit', compact('result', 'students'));
-}
-
-
 }

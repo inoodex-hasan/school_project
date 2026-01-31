@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-5">
     <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header bg-info text-white">
             <h4 class="mb-0">Create Exam Type</h4>
         </div>
         <div class="card-body">
@@ -41,7 +41,7 @@
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                     <textarea name="description" id="description"
-                        class="form-control @error('description') is-invalid @enderror" rows="4"
+                        class="summernote @error('description') is-invalid @enderror" rows="4"
                         placeholder="Enter description">{{ old('description') }}</textarea>
                     @error('description')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -79,3 +79,13 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('#summernote').summernote({
+                height: 200
+            });
+        });
+    </script>
+@endpush

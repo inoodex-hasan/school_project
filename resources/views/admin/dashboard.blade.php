@@ -86,13 +86,13 @@
                     <span class="user-icon">
                         <img src="/assets_admin/vendors/images/photo1.jpg" alt="" />
                     </span>
-                    <span class="user-name">Inoodex</span>
+                    <span class="user-name">{{ Auth::user()->name }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-                    <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-                    <a href="{{ route('logout') }}" class="dropdown-item">
+                    <a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
+                    <a class="dropdown-item" href="#"><i class="dw dw-settings2"></i> Setting</a>
+                    <a class="dropdown-item" href="#"><i class="dw dw-help"></i> Help</a>
+                    <a href="{{ route('logout.get') }}" class="dropdown-item">
                         <i class="dw dw-logout"></i> Log Out
                     </a>
 
@@ -379,8 +379,8 @@
                     </div>
                     <div class="col-md-6 col-sm-12 text-right">
                         <div class="dropdown">
-                            <a id="dateDropdown" class="btn btn-primary dropdown-toggle" href="#"
-                                role="button" data-toggle="dropdown">
+                            <a id="dateDropdown" class="btn btn-primary dropdown-toggle" href="#" role="button"
+                                data-toggle="dropdown">
                                 <!-- Dynamic date goes here -->
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
@@ -396,9 +396,9 @@
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
                     <div class="card-box pd-30 height-100-p">
                         <div class="progress-box text-center">
-                            <input type="text" class="knob dial1" value="80" data-width="120"
-                                data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff"
-                                data-fgColor="#1b00ff" data-angleOffset="180" readonly />
+                            <input type="text" class="knob dial1" value="80" data-width="120" data-height="120"
+                                data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#1b00ff"
+                                data-angleOffset="180" readonly />
                             <h5 class="text-blue padding-top-10 h5">My Earnings</h5>
                             <span class="d-block">80% Average <i class="fa fa-line-chart text-blue"></i></span>
                         </div>
@@ -407,9 +407,9 @@
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
                     <div class="card-box pd-30 height-100-p">
                         <div class="progress-box text-center">
-                            <input type="text" class="knob dial2" value="70" data-width="120"
-                                data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff"
-                                data-fgColor="#00e091" data-angleOffset="180" readonly />
+                            <input type="text" class="knob dial2" value="70" data-width="120" data-height="120"
+                                data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#00e091"
+                                data-angleOffset="180" readonly />
                             <h5 class="text-light-green padding-top-10 h5">
                                 Business Captured
                             </h5>
@@ -420,28 +420,26 @@
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
                     <div class="card-box pd-30 height-100-p">
                         <div class="progress-box text-center">
-                            <input type="text" class="knob dial3" value="90" data-width="120"
-                                data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff"
-                                data-fgColor="#f56767" data-angleOffset="180" readonly />
+                            <input type="text" class="knob dial3" value="90" data-width="120" data-height="120"
+                                data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#f56767"
+                                data-angleOffset="180" readonly />
                             <h5 class="text-light-orange padding-top-10 h5">
                                 Projects Speed
                             </h5>
-                            <span class="d-block">90% Average <i
-                                    class="fa text-light-orange fa-line-chart"></i></span>
+                            <span class="d-block">90% Average <i class="fa text-light-orange fa-line-chart"></i></span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
                     <div class="card-box pd-30 height-100-p">
                         <div class="progress-box text-center">
-                            <input type="text" class="knob dial4" value="65" data-width="120"
-                                data-height="120" data-linecap="round" data-thickness="0.12" data-bgColor="#fff"
-                                data-fgColor="#a683eb" data-angleOffset="180" readonly />
+                            <input type="text" class="knob dial4" value="65" data-width="120" data-height="120"
+                                data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#a683eb"
+                                data-angleOffset="180" readonly />
                             <h5 class="text-light-purple padding-top-10 h5">
                                 Panding Orders
                             </h5>
-                            <span class="d-block">65% Average <i
-                                    class="fa text-light-purple fa-line-chart"></i></span>
+                            <span class="d-block">65% Average <i class="fa text-light-purple fa-line-chart"></i></span>
                         </div>
                     </div>
                 </div>
@@ -554,7 +552,7 @@
 
     @if (session('success') || session('error'))
         <script>
-            document.addEventListener("DOMContentLoaded", function() {
+            document.addEventListener("DOMContentLoaded", function () {
                 let toast = document.createElement('div');
                 toast.innerText = "{{ session('success') ?? session('error') }}";
                 toast.style.position = 'fixed';

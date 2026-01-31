@@ -6,6 +6,8 @@
     <meta charset="utf-8" />
     <title>School Management System</title>
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <!-- Site favicon -->
     <link rel="icon" type="image/png" sizes="16x16" href="/assets_admin/vendors/images/favicon-16x16.png" />
 
@@ -21,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="/assets_admin/src/plugins/jvectormap/jquery-jvectormap-2.0.3.css" />
     <link rel="stylesheet" type="text/css" href="/assets_admin/vendors/styles/style.css" />
     <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-lite.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     @stack('styles')
 
@@ -50,101 +53,121 @@
                     <div class="form-group mb-0">
                         <i class="dw dw-search2 search-icon"></i>
                         <input type="text" class="form-control search-input" placeholder="Search Here" />
-                        <!-- <div class="dropdown">
-                <a
-                  class="dropdown-toggle no-arrow"
-                  href="#"
-                  role="button"
-                  data-toggle="dropdown"
-                >
-                  <i class="ion-arrow-down-c"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label"
-                      >From</label
-                    >
-                    <div class="col-sm-12 col-md-10">
-                      <input
-                        class="form-control form-control-sm form-control-line"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label">To</label>
-                    <div class="col-sm-12 col-md-10">
-                      <input
-                        class="form-control form-control-sm form-control-line"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label"
-                      >Subject</label
-                    >
-                    <div class="col-sm-12 col-md-10">
-                      <input
-                        class="form-control form-control-sm form-control-line"
-                        type="text"
-                      />
-                    </div>
-                  </div>
-                  <div class="text-right">
-                    <button class="btn btn-primary">Search</button>
-                  </div>
-                </div>
-              </div> -->
                     </div>
                 </form>
             </div>
         </div>
         <div class="header-right">
+            <!-- <div class="dashboard-setting user-notification">
+                <div class="dropdown">
+                    <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
+                        <i class="dw dw-settings2"></i>
+                    </a>
+                </div>
+            </div> -->
+            <!-- <div class="user-notification">
+                <div class="dropdown">
+                    <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
+                        <i class="dw dw-notification"></i>
+                        <span class="badge notification-active"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="notification-list mx-h-350 customscroll">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <img src="/assets_admin/vendors/images/photo1.jpg" alt="" />
+                                        <h3>{{ Auth::user()->name }}</h3>
 
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
             <div class="user-info-dropdown">
                 <div class="dropdown">
                     <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                        <span class="user-icon">
-                            <img src="/assets_admin/vendors/images/photo1.jpg" alt="" />
-                        </span>
-                        <span class="user-name">Inoodex</span>
+                        <span class="user-icon"><img src="/assets_admin/vendors/images/photo1.jpg" alt="" /></span>
+                        <span class="user-name">{{ Auth::user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                        <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-                        <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-                        <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-                        <a href="{{ route('logout') }}" class="dropdown-item">
+                        <a class="dropdown-item" href="{{ route('admin.dashboard') }}"><i class="dw dw-user1"></i>
+                            Profile</a>
+                        {{-- <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
+                        --}}
+                        <a href="{{ route('logout.get') }}" class="dropdown-item">
                             <i class="dw dw-logout"></i> Log Out
                         </a>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="right-sidebar">
+        <div class="sidebar-title">
+            <h3 class="weight-600 font-16 text-blue">
+                Layout Settings
+                <span class="btn-block font-weight-400 font-12">User Interface Settings</span>
+            </h3>
+            <div class="close-sidebar" data-toggle="right-sidebar-close">
+                <i class="icon-copy ion-close-round"></i>
+            </div>
+        </div>
+        <div class="right-sidebar-body customscroll">
+            <div class="right-sidebar-body-content">
+                <h4 class="weight-600 font-16 pb-10">Header Background</h4>
+                <div class="sidebar-btn-group pb-30 mb-10">
+                    <a href="javascript:void(0)" class="btn btn-outline-primary header-white active">White</a>
+                    <a href="javascript:void(0)" class="btn btn-outline-primary header-dark">Dark</a>
+                </div>
+                <h4 class="weight-600 font-16 pb-10">Sidebar Background</h4>
+                <div class="sidebar-btn-group pb-30 mb-10">
+                    <a href="javascript:void(0)" class="btn btn-outline-primary sidebar-light ">Light</a>
+                    <a href="javascript:void(0)" class="btn btn-outline-primary sidebar-dark active">Dark</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Sidebar -->
     @include('admin.sidebar')
+
     <div class="mobile-menu-overlay"></div>
-    <!-- Main Content -->
+
     <div class="main-container">
-        @yield('content')
+        <div class="pd-ltr-20">
+            @yield('content')
+        </div>
     </div>
 
     <!-- js -->
     <script src="/assets_admin/vendors/scripts/core.js"></script>
-    <script src="{{ asset('assets/modules/summernote/summernote-lite.js') }}"></script>
     <script src="/assets_admin/vendors/scripts/script.min.js"></script>
     <script src="/assets_admin/vendors/scripts/process.js"></script>
     <script src="/assets_admin/vendors/scripts/layout-settings.js"></script>
-    <script src="/assets_admin/src/plugins/jQuery-Knob-master/jquery.knob.min.js"></script>
-    <script src="/assets_admin/src/plugins/highcharts-6.0.7/code/highcharts.js"></script>
-    <script src="/assets_admin/src/plugins/highcharts-6.0.7/code/highcharts-more.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.js"></script>
     <script src="/assets_admin/src/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
     <script src="/assets_admin/src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="/assets_admin/vendors/scripts/dashboard2.js"></script>
+    <script src="/assets_admin/vendors/scripts/jvectormap-settings.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function () {
+            // Initialize Summernote for textareas with class 'summernote'
+            $('.summernote').summernote({
+                placeholder: 'Write something...',
+                tabsize: 2,
+                height: 300,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'clear']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['insert', ['link']]
+                ]
+            });
+        });
+    </script>
 
     <script>
         function toggleDropdown(element) {
@@ -155,10 +178,19 @@
             // Check if the dropdown is already active
             const isActive = dropdown.classList.contains('active');
 
+            // Check if this dropdown is active due to current route
+            const isRouteActive = dropdown.dataset.routeActive === 'true';
+
+            // If this dropdown is route-active, don't close it
+            if (isRouteActive && isActive) {
+                return; // Keep it open
+            }
+
             // Close all other dropdowns
             document.querySelectorAll('.dropdown').forEach((otherDropdown) => {
                 if (otherDropdown !== dropdown) {
                     otherDropdown.classList.remove('active');
+                    otherDropdown.dataset.openedByClick = 'false';
                     const otherSubmenu = otherDropdown.querySelector('.submenu');
                     if (otherSubmenu) {
                         otherSubmenu.style.display = 'none';
@@ -169,22 +201,25 @@
             // Toggle the current dropdown
             if (!isActive) {
                 dropdown.classList.add('active');
+                dropdown.dataset.openedByClick = 'true';
                 submenu.style.display = 'block';
             } else {
                 dropdown.classList.remove('active');
+                dropdown.dataset.openedByClick = 'false';
                 submenu.style.display = 'none';
             }
         }
 
         // Initialize the active dropdown based on the current route
         document.addEventListener('DOMContentLoaded', () => {
-            const activeDropdown = document.querySelector('.dropdown.active');
-            if (activeDropdown) {
+            document.querySelectorAll('.dropdown.active').forEach((activeDropdown) => {
+                // Mark as route-active so it won't close on toggle click
+                activeDropdown.dataset.routeActive = 'true';
                 const submenu = activeDropdown.querySelector('.submenu');
                 if (submenu) {
                     submenu.style.display = 'block';
                 }
-            }
+            });
         });
 
         // Close dropdowns when clicking outside, except for the route-based active one
@@ -193,7 +228,10 @@
             if (!isClickInsideDropdown) {
                 document.querySelectorAll('.dropdown').forEach((dropdown) => {
                     // Only close dropdowns that were manually opened (not route-based)
-                    if (!dropdown.classList.contains('active')) {
+                    const wasOpenedByClick = dropdown.dataset.openedByClick === 'true';
+                    if (wasOpenedByClick) {
+                        dropdown.classList.remove('active');
+                        dropdown.dataset.openedByClick = 'false';
                         const submenu = dropdown.querySelector('.submenu');
                         if (submenu) {
                             submenu.style.display = 'none';
@@ -218,7 +256,7 @@
 
     @if (session('success') || session('error'))
         <script>
-            document.addEventListener("DOMContentLoaded", function() {
+            document.addEventListener("DOMContentLoaded", function () {
                 let toast = document.createElement('div');
                 toast.innerText = "{{ session('success') ?? session('error') }}";
                 toast.style.position = 'fixed';

@@ -1,59 +1,39 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8" />
-    <title>@yield('title', 'School Management System')</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png') }}" />
+    <title>{{ config('app.name', 'School Management') }}</title>
 
-    <!-- CSS here -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/meanmenu.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/backtotop.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome-pro.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/spacing.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
-    {{-- include header --}}
-    @include('layouts.header')
+<body class="font-sans antialiased">
+    <div class="min-h-screen bg-gray-100">
+        @include('layouts.navigation')
 
-    <main class="container">
-        @include('layouts.main')
-    </main>
+        <!-- Page Heading -->
+        @isset($header)
+            <header class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
+        @endisset
 
-    <footer>
-        @include('layouts.footer')
-    </footer>
-
-    <!-- JS here -->
-    <script src="{{ asset('assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/jquery.js') }}"></script>
-    <script src="{{ asset('assets/js/vendor/waypoints.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap-bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/meanmenu.js') }}"></script>
-    <script src="{{ asset('assets/js/swiper-bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/slick.js') }}"></script>
-    <script src="{{ asset('assets/js/magnific-popup.js') }}"></script>
-    <script src="{{ asset('assets/js/backtotop.js') }}"></script>
-    <script src="{{ asset('assets/js/nice-select.js') }}"></script>
-    <script src="{{ asset('assets/js/counterup.js') }}"></script>
-    <script src="{{ asset('assets/js/wow.js') }}"></script>
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
-    <!-- <script src="assets/js/isotope.min.js"></script> -->
-    <script src=" {{ asset('assets/js/imagesloaded-pkgd.js') }}"></script>
-    <script src=" {{ asset('assets/js/main.js') }}"></script>
-    <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
-
+        <!-- Page Content -->
+        <main>
+            @yield('content')
+        </main>
+    </div>
 </body>
 
 </html>

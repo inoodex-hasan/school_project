@@ -42,35 +42,14 @@
                                         @enderror
                                     </div>
 
-                                    {{-- <div class="form-group col-md-6">
-                                        <label>Publication Date</label>
-                                        <input type="date" name="date"
-                                            class="form-control @error('date') is-invalid @enderror"
-                                            value="{{ old('date', now()->toDateString()) }}">
-                                        <small class="form-text text-muted">Defaults to today's date.</small>
-                                        @error('date')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div> --}}
-
-                                    {{-- <div class="form-group col-md-6">
+                                    <div class="form-group col-md-6">
                                         <label>Status</label>
                                         <select name="status" class="form-control">
                                             <option value="1" {{ old('status', 1) == 1 ? 'selected' : '' }}>Published
                                             </option>
                                             <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Draft</option>
                                         </select>
-                                    </div> --}}
-
-                                    {{-- <div class="form-group col-md-6">
-                                        <label>Featured Image <span class="text-danger">*</span></label>
-                                        <input type="file" name="image"
-                                            class="form-control @error('image') is-invalid @enderror" accept="image/*"
-                                            required>
-                                        @error('image')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div> --}}
+                                    </div>
 
                                     <div class="form-group col-md-12">
                                         <label>Description <span class="text-danger">*</span></label>
@@ -82,11 +61,11 @@
                                     </div>
                                 </div>
 
-                                <div class="mt-4">
-                                    <button type="submit" class="btn btn-primary btn-lg">
+                                <div class="d-flex justify-content-end align-items-center mt-4">
+                                    <button type="submit" class="btn btn-primary btn-m">
                                         Publish Notice
                                     </button>
-                                    <a href="{{ route('admin.notices.index') }}" class="btn btn-secondary btn-lg ml-2">
+                                    <a href="{{ route('admin.notices.index') }}" class="btn btn-secondary btn-m ml-2">
                                         Cancel
                                     </a>
                                 </div>

@@ -1,0 +1,16 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/*  02. Carousel CSS START
+/*----------------------------------------*/
+.top {
+  &__banner {
+    // background-color: var(--tp-theme-2);
+    padding: 30px 0;
+    &-box {
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/*  02. Events CSS START
+/*----------------------------------------*/
+
+.events__area {
+  background-image: url("../img/bg/bg.jpg");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: cover;
+  padding: 90px 0;
+  background-color: var(--tp-grey-2);
+  .events__content {
+    margin-top: 30px;
+    .envet__item {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      overflow: hidden;
+      &:hover {
+        .event__img {
+          img {
+            transform: scale(1.1);
+          }
+        }
+      }
+      .event__img {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        img {
+          width: 100%;
+          height: 100%;
+          transition: all 0.4s;
+        }
+      }
+      .event__text {
+        padding: 10px 20px;
+        background: #f2f1f1;
+        p {
+          i {
+            margin-right: 7px;
+          }
+        }
+        h3 {
+          &:hover {
+            color: var(--tp-theme-2);
+          }
+        }
+      }
+    }
+  }
+}
+
+.section__title {
+  h2 {
+    font-size: 40px;
+  }
+  p {
+    font-size: 16px;
+  }
+}

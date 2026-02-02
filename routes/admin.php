@@ -9,9 +9,9 @@ use App\Http\Controllers\AccountTypeController;
 use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MessageController;
-use App\HTTP\Controllers\TeacherController;
-use App\HTTP\Controllers\StudentController;
-use App\HTTP\Controllers\EventController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ClassRoutineController;
 use App\Http\Controllers\ExamRoutineController;
 use App\Http\Controllers\ResultController;
@@ -26,9 +26,9 @@ use App\Http\Controllers\ContactController;
 Route::middleware(['auth', 'admin'])->group(function () {
 
     // Dashboard
-    Route::get('/dashboard', function () {
+    Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
-    })->name('dashboard');
+    })->name('admin.dashboard');
 
     // Notices (resource)
     Route::resource('notices', NoticeController::class)->names('notices');

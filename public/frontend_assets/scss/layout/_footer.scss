@@ -1,0 +1,37 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/*  00. FOOTER CSS START
+/*----------------------------------------*/
+
+.footer__area {
+  background: #184e91;
+  padding: 60px 0;
+  .footer__widget {
+    margin-bottom: 30px;
+    .widget__title {
+      margin-bottom: 20px;
+      border-bottom: 1px solid white;
+      h4 {
+        color: var(--tp-common-white);
+        font-size: 28px;
+      }
+    }
+    .widget__content {
+      ul {
+        list-style: none;
+        li {
+          margin-bottom: 7px;
+          a {
+            color: #ccc;
+            font-size: 18px;
+            transition: all 0.7s;
+            &:hover {
+              padding-left: 7px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

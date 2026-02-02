@@ -1,0 +1,82 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/*  24. Sidebar  CSS START
+/*----------------------------------------*/
+.sidebar_wrap {
+  @media #{$sm} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  @media #{$md} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  .sidebar_card {
+    margin-bottom: 30px;
+
+    .card_title {
+      background-color: var(--tp-text-dark-green);
+      padding: 7px 5px;
+      h4 {
+        color: var(--tp-common-white);
+        font-size: 16px;
+        margin-bottom: 0;
+        font-weight: 500;
+      }
+    }
+    .card_img {
+      width: 100%;
+      text-align: center;
+      img {
+        width: 50%;
+        margin: 5px auto;
+      }
+    }
+    .card_img2 {
+      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+    .sidebar_content {
+      text-align: center;
+      &.links {
+        text-align: left !important;
+      }
+      ul {
+        list-style: none;
+        padding-top: 10px;
+        li {
+          border-bottom: 1px solid var(--tp-border-1);
+          padding: 5px 0;
+          position: relative;
+
+          &::before {
+            content: "\f061";
+            font-family: "Font Awesome 6 Pro";
+            top: 0;
+            margin-right: 10px;
+            color: var(--tp-text-green);
+            left: 0;
+            // position: absolute;
+          }
+          a {
+            font-size: 13px;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+      p {
+        font-size: 10px;
+        font-weight: 900;
+        line-height: 1.5;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

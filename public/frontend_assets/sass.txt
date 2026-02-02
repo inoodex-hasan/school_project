@@ -1,0 +1,1 @@
+ sass --watch e:\inoodex-school\assets\scss\main.scss:e:\inoodex-school\assets\css\style.css

@@ -1,0 +1,87 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/*  00. FOOTER CSS START
+/*----------------------------------------*/
+
+.footer {
+  &__area {
+    background-color: var(--tp-theme-1);
+    padding: 90px 0;
+  }
+  &__widget {
+    width: 100%;
+    p {
+      margin-top: 20px;
+      color: #ffffffc7;
+    }
+    h3 {
+      font-size: 16px;
+      color: var(--tp-common-white);
+      margin-left: 10px;
+      margin-bottom: 15px;
+    }
+    ul {
+      list-style: none;
+      margin-left: 10px;
+      li {
+        margin-bottom: 8px;
+        &:hover {
+          i {
+            color: #fff;
+          }
+          a {
+            color: #fff;
+          }
+        }
+        i {
+          color: #ffffff86;
+        }
+        a {
+          color: #ffffff86;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  &__logo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 30px;
+    img {
+      width: 70px;
+      height: 100%;
+    }
+    h4 {
+      font-size: 22px;
+      color: #fff;
+    }
+    p {
+      color: #ffffff86;
+    }
+  }
+  &__social {
+    ul {
+      display: flex;
+      gap: 10px;
+      list-style: none;
+      li {
+        a {
+          color: var(--tp-common-white);
+          font-size: 14px;
+          width: 35px;
+          height: 35px;
+          border: 1px solid #ffffffc7;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          &:hover {
+            background: #ffffffc7;
+            color: #000 !important ;
+          }
+        }
+      }
+    }
+  }
+}

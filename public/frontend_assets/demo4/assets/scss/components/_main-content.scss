@@ -1,0 +1,39 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/*  02. MAIN CONTENT CSS START
+/*----------------------------------------*/
+main {
+  background: var(--tp-grey-1);
+}
+
+// calculator area
+.calculator__area {
+  margin-bottom: 30px;
+  .calculator__item {
+    display: block;
+
+    .item_box {
+      display: flex;
+      align-items: center;
+      background: var(--tp-common-white);
+      gap: 10px;
+      border: 1px solid #ddd;
+      padding: 7px;
+      border-radius: 35px;
+      .cal__img {
+        img {
+          width: 50px;
+          height: auto;
+        }
+      }
+      .cal__content {
+        p {
+          color: blue;
+          margin: 0;
+          font-size: 17px;
+        }
+      }
+    }
+  }
+}

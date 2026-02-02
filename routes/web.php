@@ -39,32 +39,45 @@ Route::get('/logout', function (Request $request) {
     return redirect('/login');
 })->name('logout.get');
 
-// Frontend Routes - redirect to login or admin dashboard
+// Frontend Routes - show index page
 Route::get('/', function () {
     if (Auth::check()) {
         return redirect()->route('admin.dashboard');
     }
-    return redirect()->route('login');
+    return view('index');
 });
+
+Route::get('demo2', function () {
+    return view('frontend.demo2');
+})->name('demo2');
+
+Route::get('demo3', function () {
+    return view('frontend.demo3');
+})->name('demo3');
+
+Route::get('demo4', function () {
+    return view('frontend.demo4');
+})->name('demo4');
 // Frontend Public Routes
-Route::get('/notices', [WebsiteController::class, 'allNotices'])->name('notices.index');
-Route::get('/notices/{id}', [WebsiteController::class, 'showNotice'])->name('notices.show');
+// Route::get('/notices', [WebsiteController::class, 'allNotices'])->name('notices.index');
+// Route::get('/notices/{id}', [WebsiteController::class, 'showNotice'])->name('notices.show');
 
-Route::get('/about/history', [WebsiteController::class, 'history'])->name('about.history');
-Route::get('/about', [WebsiteController::class, 'about'])->name('about');
+// Route::get('/about/history', [WebsiteController::class, 'history'])->name('about.history');
+// Route::get('/about', [WebsiteController::class, 'about'])->name('about');
 
-Route::get('/teachers', [WebsiteController::class, 'teachers'])->name('teachers');
+// Route::get('/teachers', [WebsiteController::class, 'teachers'])->name('teachers');
 
-Route::get('/message/{id}', [WebsiteController::class, 'showMessage'])->name('message.show');
+// Route::get('/message/{id}', [WebsiteController::class, 'showMessage'])->name('message.show');
 
-Route::get('/gallery', [WebsiteController::class, 'galleryPage'])->name('gallery.page');
+// Route::get('/gallery', [WebsiteController::class, 'galleryPage'])->name('gallery.page');
 
-Route::get('/events', [WebsiteController::class, 'allEvents'])->name('events.index');
-Route::get('/events/{id}', [WebsiteController::class, 'showEvent'])->name('events.show');
+// Route::get('/events', [WebsiteController::class, 'allEvents'])->name('events.index');
+// Route::get('/events/{id}', [WebsiteController::class, 'showEvent'])->name('events.show');
 
-Route::get('/class-routine', [WebsiteController::class, 'classRoutine'])->name('class.routine');
-Route::get('/class-routine/{id}', [WebsiteController::class, 'show'])->name('frontend.class_routine');
+// Route::get('/class-routine', [WebsiteController::class, 'classRoutine'])->name('class.routine');
+// Route::get('/class-routine/{id}', [WebsiteController::class, 'show'])->name('frontend.class_routine');
 
-Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
+// Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
 
-
+// Include Admin Routes
+require base_path('routes/admin.php');

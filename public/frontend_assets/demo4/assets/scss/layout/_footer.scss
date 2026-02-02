@@ -1,0 +1,55 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/*  00. FOOTER CSS START
+/*----------------------------------------*/
+
+.footer__area {
+  .footer__img {
+    background: var(--tp-grey-1);
+    margin-bottom: -19px;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .footer__main {
+    background: var(--tp-theme-footer-bg);
+    padding: 60px 0;
+    .footer__widget {
+      .footer__title {
+        margin-bottom: 20px;
+        h4 {
+          color: var(--tp-theme-text-green);
+          font-size: 24px;
+        }
+      }
+      ul {
+        list-style: none;
+        li {
+          i {
+            margin-right: 10px;
+          }
+          color: var(--tp-common-white);
+          margin-bottom: 7px;
+          font-size: 17px;
+        }
+      }
+    }
+  }
+}
+
+.footer__bottom {
+  box-sizing: border-box;
+  padding: 20px;
+  background-image: linear-gradient(181deg, #101017 0%, #252530 100%);
+  p {
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    margin: 0;
+    a {
+      color: var(--tp-theme-green);
+    }
+  }
+}

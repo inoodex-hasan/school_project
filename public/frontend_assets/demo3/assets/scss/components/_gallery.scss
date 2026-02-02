@@ -1,0 +1,22 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/*  02. Events CSS START
+/*----------------------------------------*/
+
+.gallery__area {
+  padding: 90px 0;
+  background-color: var(--tp-common-white);
+
+  .gallery__content {
+    margin-top: 30px;
+    .gallery_item {
+      img {
+        width: 100%;
+        min-height: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

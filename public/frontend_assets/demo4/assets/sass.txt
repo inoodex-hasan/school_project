@@ -1,0 +1,1 @@
+sass --watch e:\tp-starter-pack\assets\scss\main.scss:e:\tp-starter-pack\assets\css\style.css

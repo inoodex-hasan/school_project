@@ -1,0 +1,48 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/*  00. counter CSS START
+/*----------------------------------------*/
+.counter__area {
+  margin-top: 30px;
+  .counter__box {
+    padding: 30px 0;
+    margin: 0;
+    background: var(--tp-common-white);
+    .counter__card {
+      text-align: center;
+      .icon {
+        width: 40px;
+        height: 40px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      h4 {
+        font-size: 22px;
+      }
+      p {
+        font-size: 18px;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.purple {
+  color: #8f41b0;
+  background: #7d0cad20;
+}
+
+.green {
+  color: #27b737;
+  background: #27b73725;
+}
+
+.orange {
+  color: #ff5722;
+  background: #ff572220;
+}

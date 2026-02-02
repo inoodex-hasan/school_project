@@ -1,74 +1,126 @@
 @extends('admin.adminlayout')
 
 @section('content')
-<div class="container">
-    <h1>Edit Teacher</h1>
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-8 offset-md-2">
+                    <div class="card shadow">
+                        <div class="card-header d-flex justify-content-between align-items-center py-3 bg-white border-bottom">
+                            <h4 class="mb-0 fw-semibold text-dark">Edit Teacher</h4>
+                            <div class="card-header-action">
+                                <a href="{{ route('admin.teachers.index') }}" class="btn btn-primary px-4 rounded-2 shadow-sm">
+                                    <i class="fas fa-arrow-left mr-1"></i> Back to List
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            @if ($errors->any())
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <ul class="mb-0">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
 
+                            <form action="{{ route('admin.teachers.update', $teacher->id) }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
 
-<form action="{{ route('admin.teachers.update', $teacher->id) }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @method('PUT')
+                                <div class="row">
+                                    {{-- Name --}}
+                                    <div class="col-md-6 mb-3">
+                                        <label for="name" class="form-label">Full Name <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" name="name" id="name" class="form-control"
+                                            value="{{ old('name', $teacher->name) }}" required>
+                                    </div>
 
+                                    {{-- Email --}}
+                                    <div class="col-md-6 mb-3">
+                                        <label for="email" class="form-label">Email Address <span
+                                                class="text-danger">*</span></label>
+                                        <input type="email" name="email" id="email" class="form-control"
+                                            value="{{ old('email', $teacher->email) }}" required>
+                                    </div>
 
-    <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" name="name" value="{{ old('name', $teacher->name) }}" required>
-    </div>
+                                    {{-- Phone --}}
+                                    <div class="col-md-6 mb-3">
+                                        <label for="phone" class="form-label">Phone Number <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" name="phone" id="phone" class="form-control"
+                                            value="{{ old('phone', $teacher->phone) }}" required>
+                                    </div>
 
-      <div class="form-group">
-            <label>Subject</label>
-            <select name="subject_id" class="form-control">
-                <option value="">Select Subject</option>
-                @foreach($subjects as $subject)
-                    <option value="{{ $subject->id }}" {{ old('subject_id', $teacher->subject_id ?? '') == $subject->id ? 'selected' : '' }}>
-                        {{ $subject->name }}
-                </option>
-            @endforeach
-        </select>
-        </div> 
+                                    {{-- Subject --}}
+                                    <div class="col-md-6 mb-3">
+                                        <label for="subject_id" class="form-label">Subject</label>
+                                        <select name="subject_id" id="subject_id" class="form-control">
+                                            <option value="">Select Subject</option>
+                                            @foreach ($subjects as $subject)
+                                                <option value="{{ $subject->id }}"
+                                                    {{ old('subject_id', $teacher->subject_id) == $subject->id ? 'selected' : '' }}>
+                                                    {{ $subject->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
 
-    <div class="form-group">
-        <label>Email</label>
-        <input type="email" name="email" value="{{ old('email', $teacher->email) }}" required>
-    </div>
+                                    {{-- Status --}}
+                                    <div class="col-md-6 mb-3">
+                                        <label for="status" class="form-label">Status <span
+                                                class="text-danger">*</span></label>
+                                        <select name="status" id="status" class="form-control" required>
+                                            <option value="1" {{ $teacher->status ? 'selected' : '' }}>Active</option>
+                                            <option value="0" {{ !$teacher->status ? 'selected' : '' }}>Inactive
+                                            </option>
+                                        </select>
+                                    </div>
 
-    <div class="form-group">
-        <label>Current Photo</label><br>
-        @if($teacher->photo)
-            <img src="{{ asset('storage/' . $teacher->photo) }}" 
-                 alt="Teacher Photo" 
-                 width="100" height="100"
-                 class="mb-2 rounded">
-        @else
-            <span>No Photo</span>
-        @endif
-    </div>
+                                    {{-- Photo --}}
+                                    <div class="col-md-6 mb-3">
+                                        <label for="photo" class="form-label">Photo</label>
+                                        <div class="d-flex align-items-center">
+                                            @if ($teacher->photo)
+                                                <img src="{{ asset('storage/' . $teacher->photo) }}" alt="Teacher Photo"
+                                                    class="rounded mr-3 border" width="60" height="60"
+                                                    style="object-fit: cover;">
+                                            @endif
+                                            <div class="custom-file">
+                                                <input type="file" name="photo" id="photo" class="custom-file-input"
+                                                    accept="image/*">
+                                                <label class="custom-file-label" for="photo">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-<div class="form-group">
-    <label>Change Photo</label>
-    <input type="file" name="photo" accept="image/*">
-</div>
+                                <div class="d-flex justify-content-end mt-4">
+                                    <button type="submit" class="btn btn-primary btn-lg shadow-sm px-5">
+                                        <i class="fas fa-save mr-2"></i> Update Teacher
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-
-    <div class="form-group">
-        <label>Phone</label>
-        <input type="text" name="phone" value="{{ old('phone', $teacher->phone) }}">
-    </div>
-
-    <div class="form-group">
-        <label>Status</label>
-        <select name="status">
-            <option value="1" {{ $teacher->status ? 'selected' : '' }}>Active</option>
-            <option value="0" {{ !$teacher->status ? 'selected' : '' }}>Inactive</option>
-        </select>
-    </div>
-
-    <button type="submit">Update Teacher</button>
-</form>
-
-</div>
+    @push('scripts')
+        <script>
+            // Custom file input label update
+            $(".custom-file-input").on("change", function() {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+        </script>
+    @endpush
 @endsection
-
-@push('styles')
-<link rel="stylesheet" href="{{ asset('css/teachers/edit.css') }}">
-@endpush

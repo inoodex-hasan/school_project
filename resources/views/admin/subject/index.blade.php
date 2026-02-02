@@ -1,58 +1,113 @@
 @extends('admin.adminlayout')
 
 @section('content')
-<div class="container mt-4">
-    <div class="card shadow-sm">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Manage Subjects</h5>
-            <a href="{{ route('admin.subject.create') }}" class="btn btn-primary btn-sm">
-                <i class="bi bi-plus-lg"></i> Add Subject
+    <div class="container-fluid py-4 col-md-10">
+        {{-- Header Section --}}
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="h3 mb-0 text-gray-800">Subject Management</h1>
+            </div>
+            <a href="{{ route('admin.subject.create') }}" class="btn btn-primary shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-50 mr-2"></i> Add Subject
             </a>
         </div>
-        <div class="card-body">
 
-            @if($subjects->count())
-                <table class="table table-bordered table-striped align-middle">
-                    <thead class="table-light">
-                        <tr>
-                            <th>ID</th>
-                            <th>Subject Name</th>
-                            <th>Class</th>
-                            <th>Created At</th>
-                            <th width="180">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($subjects as $subject)
-                        <tr>
-                            <td>{{ $subject->id }}</td>
-                            <td>{{ $subject->name }}</td>
-                            <td>{{ $subject->schoolClass->name ?? '-' }}</td>
-                            <td>{{ $subject->created_at->format('d M Y') }}</td>
-                            <td>
-                                <a href="{{ route('admin.subject.edit', $subject->id) }}" class="btn btn-sm btn-warning">
-                                    <i class="bi bi-pencil-square"></i> Edit
-                                </a>
-                                <form action="{{ route('admin.subject.destroy', $subject->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this subject?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-danger">
-                                        <i class="bi bi-trash"></i> Delete
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+        {{-- Stats Overview --}}
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card border-left-secondary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Total Subjects</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $subjects->count() }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-left-success shadow h-100 py-2 border-bottom-success"
+                    style="transform: scale(1.05); z-index: 10;">
+                    <div class="card-body">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Active Subjects</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $subjects->count() }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Archive</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                <div class="mt-3">
+        {{-- Main Content Table --}}
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 bg-white">
+                <h6 class="m-0 font-weight-bold text-primary">All Subjects</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle" width="100%" cellspacing="0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="border-0">Subject Name</th>
+                                <th class="border-0">Class</th>
+                                <th class="border-0">Created At</th>
+                                <th class="border-0 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($subjects as $subject)
+                                <tr>
+                                    <td class="font-weight-bold text-dark">{{ $subject->name }}</td>
+                                    <td><span
+                                            class="badge bg-light text-dark border">{{ $subject->schoolClass->name ?? 'N/A' }}</span>
+                                    </td>
+                                    <td>{{ $subject->created_at->format('d M Y') }}</td>
+                                    <td class="text-right">
+                                        <div class="btn-group" role="group">
+                                            <a href="{{ route('admin.subject.edit', $subject->id) }}"
+                                                class="btn btn-outline-warning btn-sm mx-1" title="Edit">
+                                                Edit
+                                            </a>
+                                            <form action="{{ route('admin.subject.destroy', $subject->id) }}" method="POST"
+                                                class="d-inline"
+                                                onsubmit="return confirm('Are you sure you want to delete this subject?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-outline-danger btn-sm mx-1">Delete</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="text-center py-5 text-muted">
+                                        <p>No subjects found.</p>
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pagination -->
+                <div class="mt-4 d-flex justify-content-end">
                     {{ $subjects->links('pagination::bootstrap-5') }}
                 </div>
-            @else
-                <p class="text-muted">No subjects found. <a href="{{ route('admin.subject.create') }}">Add one now</a>.</p>
-            @endif
+            </div>
         </div>
     </div>
-</div>
+
+    <style>
+        .table thead th {
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            color: #6e707e;
+        }
+
+        .card {
+            transition: all 0.2s ease-in-out;
+        }
+    </style>
 @endsection

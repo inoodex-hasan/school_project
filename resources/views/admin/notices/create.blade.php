@@ -1,5 +1,5 @@
 @extends('admin.adminlayout')
-{{-- 
+{{--
 @section('title', 'Create New Blog Post') --}}
 
 @section('content')
@@ -14,13 +14,14 @@
 
         <div class="section-body">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 col-md-8 offset-md-2">
                     <div class="card">
                         <div
                             class="card-header d-flex justify-content-between align-items-center py-3 bg-white border-bottom">
                             <h4 class="mb-0 fw-semibold text-dark">Create New Notice</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.notices.index') }}" class="btn btn-primary px-4 rounded-2 shadow-sm">
+                                <a href="{{ route('admin.notices.index') }}"
+                                    class="btn btn-primary px-4 rounded-2 shadow-sm">
                                     Back to List
                                 </a>
                             </div>
@@ -54,7 +55,8 @@
                                     <div class="form-group col-md-12">
                                         <label>Description <span class="text-danger">*</span></label>
                                         <textarea name="description" id="description" rows="10"
-                                            class="summernote @error('description') is-invalid @enderror" required>{{ old('description') }}</textarea>
+                                            class="summernote @error('description') is-invalid @enderror"
+                                            required>{{ old('description') }}</textarea>
                                         @error('description')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -80,7 +82,7 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#description').summernote({
                 height: 200
             });

@@ -52,4 +52,41 @@ class AccountController extends Controller
         return redirect()->route('admin.accounts.index')
             ->with('success', 'Account entry created successfully!');
     }
+
+    public function edit($id)
+    {
+        $account = Account::findOrFail($id);
+        $students = Student::orderBy('name')->get();
+        $accountTypes = AccountType::orderBy('name')->get();
+
+        return view('admin.accounts.edit', compact('account', 'students', 'accountTypes'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $account = Account::findOrFail($id);
+
+        $request->validate([
+            'student_id' => 'required|exists:students,id',
+            'amount' => 'required|numeric',
+            'type' => 'required|in:income,expense',
+            'account_type_id' => 'nullable|exists:account_types,id',
+            'note' => 'nullable|string',
+            'date' => 'required|date',
+        ]);
+
+        $account->update($request->all());
+
+        return redirect()->route('admin.accounts.index')
+            ->with('success', 'Account entry updated successfully!');
+    }
+
+    public function destroy($id)
+    {
+        $account = Account::findOrFail($id);
+        $account->delete();
+
+        return redirect()->route('admin.accounts.index')
+            ->with('success', 'Account entry deleted successfully!');
+    }
 }

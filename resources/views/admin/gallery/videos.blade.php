@@ -1,47 +1,97 @@
 @extends('admin.adminlayout')
 
 @section('content')
-    <div class="gallery-container">
-    <h1>Add New Video</h1>
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-8 offset-md-2">
+                    <div class="card">
+                        <div
+                            class="card-header d-flex justify-content-between align-items-center py-3 bg-white border-bottom">
+                            <h4 class="mb-0 fw-semibold text-dark">Add New Video</h4>
+                            <div class="card-header-action">
+                                <a href="{{ route('admin.gallery.index') }}"
+                                    class="btn btn-primary px-4 rounded-2 shadow-sm">
+                                    Back to Gallery
+                                </a>
+                            </div>
+                        </div>
 
-    {{-- Flash message --}}
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+                        <div class="card-body">
+                            {{-- Flash Message --}}
+                            @if (session('success'))
+                                <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+                                    {{ session('success') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
 
-    {{-- Validation errors --}}
-    @if($errors->any())
-        <div class="alert alert-danger">
-            <ul class="mb-0">
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+                            {{-- Validation Errors --}}
+                            @if ($errors->any())
+                                <div class="alert alert-danger mb-4">
+                                    <ul class="mb-0">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <form action="{{ route('admin.gallery.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="type" value="video">
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="title">Video Title <span class="text-danger">*</span></label>
+                                        <input type="text" name="title" id="title"
+                                            class="form-control @error('title') is-invalid @enderror"
+                                            placeholder="Enter video title" value="{{ old('title') }}" required>
+                                        @error('title')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="file">Upload Video <span class="text-danger">*</span></label>
+                                        <div class="custom-file">
+                                            <input type="file" name="file" id="file"
+                                                class="custom-file-input @error('file') is-invalid @enderror"
+                                                accept="video/*" required>
+                                            <label class="custom-file-label" for="file">Choose file</label>
+                                        </div>
+                                        @error('file')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-end align-items-center mt-4">
+                                    <button type="submit" class="btn btn-primary btn-lg px-4">Save Video</button>
+                                    <a href="{{ route('admin.gallery.index') }}"
+                                        class="btn btn-secondary btn-lg ml-2 px-4">Cancel</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    @endif
+    </section>
 
-    {{-- Upload form --}}
-<form action="{{ route('admin.gallery.store') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <input type="hidden" name="type" value="video">
-
-    <div class="mb-3">
-        <label for="title" class="form-label">Video Title</label>
-        <input type="text" name="title" class="form-control" required>
-    </div>
-
-    <div class="mb-3">
-        <label for="file" class="form-label">Upload Video</label>
-        <input type="file" name="file" class="form-control" accept="video/*" required>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Save Video</button>
-</form>
-
-
-</div>
+    @push('scripts')
+        <script>
+            // Custom file input label update
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+        </script>
+    @endpush
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/gallery/video.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/gallery/video.css') }}">
 @endpush

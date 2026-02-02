@@ -1,49 +1,93 @@
 @extends('admin.adminlayout')
 
 @section('content')
-<div class="container">
-    <h1 class="mb-4">Edit About</h1>
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-8 offset-md-2">
+                    <div class="card">
+                        <div
+                            class="card-header d-flex justify-content-between align-items-center py-3 bg-white border-bottom">
+                            <h4 class="mb-0 fw-semibold text-dark">Edit About Page: {{ $about->title }}</h4>
+                            <div class="card-header-action">
+                                <a href="{{ route('admin.about.index') }}" class="btn btn-primary px-4 rounded-2 shadow-sm">
+                                    Back to List
+                                </a>
+                            </div>
+                        </div>
 
-    <form action="{{ route('admin.about.update', $about->id) }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
+                        <div class="card-body">
+                            <form action="{{ route('admin.about.update', $about->id) }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
 
-        <!-- Title -->
-        <div class="form-group mb-3">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $about->title) }}"
-                required>
-        </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label>About Title <span class="text-danger">*</span></label>
+                                        <input type="text" name="title"
+                                            class="form-control @error('title') is-invalid @enderror"
+                                            value="{{ old('title', $about->title) }}" required>
+                                        @error('title')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
 
-        <!-- Content -->
-        <div class="form-group mb-3">
-            <label for="content">Content</label>
-            <textarea name="content" id="editor" rows="6" class="form-control"
-                required>{{ old('content', $about->content) }}</textarea>
-        </div>
+                                    <div class="form-group col-md-12">
+                                        <label>About Content <span class="text-danger">*</span></label>
+                                        <textarea name="content" id="content" rows="10"
+                                            class="summernote @error('content') is-invalid @enderror"
+                                            required>{!! old('content', $about->content) !!}</textarea>
+                                        @error('content')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
 
-        <!-- Image -->
-        <div class="form-group mb-4">
-            <label for="photo">Photo</label>
-            <input type="file" name="photo" id="photo" class="form-control" accept="image/*">
+                                    <div class="form-group col-md-12">
+                                        <label>Upload Photo</label>
+                                        <input type="file" name="photo"
+                                            class="form-control @error('photo') is-invalid @enderror" accept="image/*">
+                                        <small class="form-text text-muted">Leave empty to keep current photo. Recommended
+                                            size: 1920x600px</small>
+                                        @error('photo')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
 
-            @if($about->photo)
-            <div class="mt-3">
-                <img src="{{ asset('storage/'.$about->photo) }}" alt="Current Photo" width="100" height="100"
-                    class="rounded shadow-sm">
+                                        @if($about->photo)
+                                            <div class="mt-3">
+                                                <label>Current Photo:</label>
+                                                <div class="p-2 border rounded d-inline-block bg-light">
+                                                    <img src="{{ asset('storage/' . $about->photo) }}" alt="Current Photo"
+                                                        class="img-fluid rounded" style="max-height: 150px;">
+                                                </div>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-end align-items-center mt-4">
+                                    <button type="submit" class="btn btn-primary btn-lg px-4">
+                                        Update Page
+                                    </button>
+                                    <a href="{{ route('admin.about.index') }}" class="btn btn-secondary btn-lg ml-2 px-4">
+                                        Cancel
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            @endif
-
-            <!-- Submit -->
-            <button type="submit" class="btn btn-success">Update</button>
-            <a href="{{ route('admin.about.index') }}" class="btn btn-secondary">Cancel</a>
-    </form>
-</div>
+        </div>
+    </section>
 @endsection
 
 @push('scripts')
-<script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
-<script>
-CKEDITOR.replace('editor');
-</script>
+    <script>
+        $(document).ready(function () {
+            $('#content').summernote({
+                height: 200
+            });
+        });
+    </script>
 @endpush

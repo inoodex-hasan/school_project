@@ -198,7 +198,7 @@
                 <!-- Account Types -->
                 <li class="dropdown {{ Route::is('admin.account_types.*') ? 'active' : '' }}">
                     <a href="javascript:;" class="dropdown-toggle" onclick="toggleDropdown(this)">
-                        <span class="micon dw dw-money"></span><span class="mtext">Account Types</span>
+                        <span class="micon dw dw-wallet"></span><span class="mtext">Account Types</span>
                     </a>
                     <ul class="submenu">
                         <li><a href="{{ route('admin.account_types.create') }}"

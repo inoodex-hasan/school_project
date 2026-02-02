@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 11, 2026 at 12:53 PM
+-- Generation Time: Feb 01, 2026 at 01:33 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.26
 
@@ -58,16 +58,17 @@ CREATE TABLE `accounts` (
   `note` text COLLATE utf8mb4_unicode_ci,
   `date` date NOT NULL DEFAULT '2026-01-06',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`id`, `student_id`, `account_type_id`, `amount`, `type`, `note`, `date`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 100.00, 'income', 'test', '2026-01-06', '2026-01-06 06:59:09', '2026-01-06 06:59:09'),
-(2, 12, 1, 1000.00, 'income', 'demo', '2026-01-07', '2026-01-06 23:23:38', '2026-01-06 23:23:38');
+INSERT INTO `accounts` (`id`, `student_id`, `account_type_id`, `amount`, `type`, `note`, `date`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 1, 100.00, 'income', 'test', '2026-01-06', '2026-01-06 06:59:09', '2026-01-06 06:59:09', NULL),
+(2, 12, 1, 1000.00, 'income', 'demo', '2026-01-07', '2026-01-06 23:23:38', '2026-01-06 23:23:38', NULL);
 
 -- --------------------------------------------------------
 
@@ -79,15 +80,16 @@ CREATE TABLE `account_types` (
   `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `account_types`
 --
 
-INSERT INTO `account_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Admission Fee', '2026-01-06 06:58:05', '2026-01-06 06:58:05');
+INSERT INTO `account_types` (`id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Admission Fee', '2026-01-06 06:58:05', '2026-01-06 06:58:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -136,6 +138,14 @@ CREATE TABLE `cache` (
   `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `cache`
+--
+
+INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
+('laravel-cache-5c785c036466adea360111aa28563bfd556b5fba', 'i:1;', 1769862611),
+('laravel-cache-5c785c036466adea360111aa28563bfd556b5fba:timer', 'i:1769862611;', 1769862611);
+
 -- --------------------------------------------------------
 
 --
@@ -158,15 +168,35 @@ CREATE TABLE `classes` (
   `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `classes`
 --
 
-INSERT INTO `classes` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'one', '2026-01-05 23:28:37', '2026-01-05 23:28:37');
+INSERT INTO `classes` (`id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'One', '2026-01-30 23:28:37', '2026-01-31 06:47:49', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `class_routines`
+--
+
+CREATE TABLE `class_routines` (
+  `id` bigint UNSIGNED NOT NULL,
+  `class_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `section_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `teacher_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `day` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -202,7 +232,8 @@ CREATE TABLE `events` (
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -231,7 +262,8 @@ CREATE TABLE `exam_types` (
   `description` text COLLATE utf8mb4_unicode_ci,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -262,7 +294,8 @@ CREATE TABLE `galleries` (
   `type` enum('photo','video') COLLATE utf8mb4_unicode_ci NOT NULL,
   `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -357,7 +390,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2025_09_02_081244_create_contacts_table', 1),
 (27, '2026_01_06_055941_create_admissions_table', 2),
 (28, '2026_01_06_122228_create_account_types_table', 3),
-(29, '2026_01_06_122345_create_accounts_table', 3);
+(29, '2026_01_06_122345_create_accounts_table', 3),
+(30, '2026_01_31_120000_add_performance_indexes', 4),
+(31, '2026_01_31_130000_add_soft_deletes', 4),
+(32, '2026_01_31_140000_create_sms_logs_table', 4);
 
 -- --------------------------------------------------------
 
@@ -371,15 +407,16 @@ CREATE TABLE `notices` (
   `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `notices`
 --
 
-INSERT INTO `notices` (`id`, `title`, `content`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'test', 'test', 1, NULL, NULL);
+INSERT INTO `notices` (`id`, `title`, `content`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'test', 'This is a test content', 1, '2026-01-12 04:37:21', '2026-01-11 22:59:01', NULL);
 
 -- --------------------------------------------------------
 
@@ -422,26 +459,8 @@ CREATE TABLE `results` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `exam_type_id` bigint UNSIGNED NOT NULL,
-  `exam_year` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `routines`
---
-
-CREATE TABLE `routines` (
-  `id` bigint UNSIGNED NOT NULL,
-  `class_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `section_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `subject_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `teacher_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `day` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `start_time` time NOT NULL,
-  `end_time` time NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `exam_year` int NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -455,15 +474,16 @@ CREATE TABLE `sections` (
   `class_id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sections`
 --
 
-INSERT INTO `sections` (`id`, `class_id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 1, 'A', '2026-01-05 23:28:53', '2026-01-05 23:28:53');
+INSERT INTO `sections` (`id`, `class_id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'A', '2026-01-05 23:28:53', '2026-01-05 23:28:53', NULL);
 
 -- --------------------------------------------------------
 
@@ -493,7 +513,26 @@ CREATE TABLE `slides` (
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sms_logs`
+--
+
+CREATE TABLE `sms_logs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `notification_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sent_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -516,16 +555,17 @@ CREATE TABLE `students` (
   `mother_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `blood_group` enum('A+','A-','B+','B-','O+','O-','AB+','AB-') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `name`, `class_id`, `section_id`, `roll`, `photo`, `dob`, `gender`, `address`, `father_name`, `mother_name`, `blood_group`, `created_at`, `updated_at`) VALUES
-(1, 'Marcos Steuber', 1, 1, 102, 'students/xvt8KzPUDQCgE94dt72pNTvdwmMKtEA8eAZJbnWR.png', NULL, NULL, NULL, NULL, NULL, NULL, '2026-01-05 23:31:03', '2026-01-05 23:31:03'),
-(12, 'Rudolph Murphy', 1, 1, 1, 'students/photo/MsD5BKOT1btVFv2mZoBDCOjFllFFrg6iPmMpMG2P.png', NULL, NULL, NULL, NULL, NULL, NULL, '2026-01-06 03:53:35', '2026-01-06 06:02:26');
+INSERT INTO `students` (`id`, `name`, `class_id`, `section_id`, `roll`, `photo`, `dob`, `gender`, `address`, `father_name`, `mother_name`, `blood_group`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Marcos Steuber', 1, 1, 102, 'students/xvt8KzPUDQCgE94dt72pNTvdwmMKtEA8eAZJbnWR.png', NULL, NULL, NULL, NULL, NULL, NULL, '2026-01-05 23:31:03', '2026-01-05 23:31:03', NULL),
+(12, 'Rudolph Murphy', 1, 1, 1, 'students/photo/MsD5BKOT1btVFv2mZoBDCOjFllFFrg6iPmMpMG2P.png', NULL, NULL, NULL, NULL, NULL, NULL, '2026-01-06 03:53:35', '2026-01-06 06:02:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -538,8 +578,16 @@ CREATE TABLE `subjects` (
   `class_id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `subjects`
+--
+
+INSERT INTO `subjects` (`id`, `class_id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'Bangla', '2026-01-31 06:53:13', '2026-01-31 06:53:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -556,7 +604,8 @@ CREATE TABLE `teachers` (
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -600,7 +649,10 @@ ALTER TABLE `abouts`
 ALTER TABLE `accounts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `accounts_student_id_foreign` (`student_id`),
-  ADD KEY `accounts_account_type_id_foreign` (`account_type_id`);
+  ADD KEY `accounts_account_type_id_foreign` (`account_type_id`),
+  ADD KEY `idx_accounts_student_id` (`student_id`),
+  ADD KEY `idx_accounts_type_id` (`account_type_id`),
+  ADD KEY `idx_accounts_date` (`date`);
 
 --
 -- Indexes for table `account_types`
@@ -613,7 +665,9 @@ ALTER TABLE `account_types`
 --
 ALTER TABLE `admissions`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `admissions_student_id_foreign` (`student_id`);
+  ADD KEY `admissions_student_id_foreign` (`student_id`),
+  ADD KEY `idx_admissions_year` (`year`),
+  ADD KEY `idx_admissions_student_id` (`student_id`);
 
 --
 -- Indexes for table `cache`
@@ -633,6 +687,16 @@ ALTER TABLE `cache_locks`
 ALTER TABLE `classes`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `classes_name_unique` (`name`);
+
+--
+-- Indexes for table `class_routines`
+--
+ALTER TABLE `class_routines`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_class_routines_class_id` (`class_id`),
+  ADD KEY `idx_class_routines_section_id` (`section_id`),
+  ADD KEY `idx_class_routines_day` (`day`),
+  ADD KEY `idx_class_routines_composite` (`class_id`,`section_id`,`day`);
 
 --
 -- Indexes for table `contacts`
@@ -721,20 +785,25 @@ ALTER TABLE `password_reset_tokens`
 ALTER TABLE `results`
   ADD PRIMARY KEY (`id`),
   ADD KEY `results_student_id_foreign` (`student_id`),
-  ADD KEY `results_exam_type_id_foreign` (`exam_type_id`);
-
---
--- Indexes for table `routines`
---
-ALTER TABLE `routines`
-  ADD PRIMARY KEY (`id`);
+  ADD KEY `results_exam_type_id_foreign` (`exam_type_id`),
+  ADD KEY `results_student_id_index` (`student_id`),
+  ADD KEY `results_exam_type_id_index` (`exam_type_id`),
+  ADD KEY `results_exam_year_index` (`exam_year`),
+  ADD KEY `results_grade_index` (`grade`),
+  ADD KEY `results_student_id_exam_type_id_exam_year_index` (`student_id`,`exam_type_id`,`exam_year`),
+  ADD KEY `idx_results_student_id` (`student_id`),
+  ADD KEY `idx_results_exam_type_id` (`exam_type_id`),
+  ADD KEY `idx_results_exam_year` (`exam_year`),
+  ADD KEY `idx_results_grade` (`grade`),
+  ADD KEY `idx_results_composite` (`student_id`,`exam_type_id`,`exam_year`);
 
 --
 -- Indexes for table `sections`
 --
 ALTER TABLE `sections`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `sections_class_id_foreign` (`class_id`);
+  ADD KEY `sections_class_id_foreign` (`class_id`),
+  ADD KEY `idx_sections_class_id` (`class_id`);
 
 --
 -- Indexes for table `sessions`
@@ -751,12 +820,29 @@ ALTER TABLE `slides`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sms_logs`
+--
+ALTER TABLE `sms_logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sms_logs_phone_index` (`phone`),
+  ADD KEY `sms_logs_status_index` (`status`),
+  ADD KEY `sms_logs_created_at_index` (`created_at`);
+
+--
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
   ADD PRIMARY KEY (`id`),
   ADD KEY `students_class_id_foreign` (`class_id`),
-  ADD KEY `students_section_id_foreign` (`section_id`);
+  ADD KEY `students_section_id_foreign` (`section_id`),
+  ADD KEY `students_class_id_index` (`class_id`),
+  ADD KEY `students_section_id_index` (`section_id`),
+  ADD KEY `students_roll_index` (`roll`),
+  ADD KEY `students_class_id_section_id_index` (`class_id`,`section_id`),
+  ADD KEY `idx_students_class_id` (`class_id`),
+  ADD KEY `idx_students_section_id` (`section_id`),
+  ADD KEY `idx_students_roll` (`roll`),
+  ADD KEY `idx_students_class_section` (`class_id`,`section_id`);
 
 --
 -- Indexes for table `subjects`
@@ -815,6 +901,12 @@ ALTER TABLE `classes`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `class_routines`
+--
+ALTER TABLE `class_routines`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
@@ -866,7 +958,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `notices`
@@ -887,12 +979,6 @@ ALTER TABLE `results`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `routines`
---
-ALTER TABLE `routines`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
@@ -905,6 +991,12 @@ ALTER TABLE `slides`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `sms_logs`
+--
+ALTER TABLE `sms_logs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
@@ -914,7 +1006,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `teachers`

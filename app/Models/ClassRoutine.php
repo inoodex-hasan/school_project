@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ClassRoutine extends Model
 {
 
-      protected $table = 'routines';
+    protected $table = 'class_routines';
 
     protected $fillable = [
         'class_id',
@@ -19,19 +19,23 @@ class ClassRoutine extends Model
         'end_time',
     ];
 
-     public function class() {
+    public function class()
+    {
         return $this->belongsTo(SchoolClass::class, 'class_id');
     }
 
-    public function section() {
+    public function section()
+    {
         return $this->belongsTo(Section::class, 'section_id');
     }
 
-    public function subject() {
+    public function subject()
+    {
         return $this->belongsTo(Subject::class, 'subject_id');
     }
 
-    public function teacher() {
+    public function teacher()
+    {
         return $this->belongsTo(Teacher::class, 'teacher_id');
     }
 

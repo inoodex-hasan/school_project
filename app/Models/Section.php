@@ -22,7 +22,7 @@ class Section extends Model
     /**
      * Get the class that owns the section.
      */
-    public function class(): BelongsTo
+    public function schoolClass(): BelongsTo
     {
         return $this->belongsTo(SchoolClass::class, 'class_id');
     }

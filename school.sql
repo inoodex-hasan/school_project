@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 01, 2026 at 01:33 PM
+-- Generation Time: Feb 02, 2026 at 05:27 AM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.26
 
@@ -41,7 +41,7 @@ CREATE TABLE `abouts` (
 --
 
 INSERT INTO `abouts` (`id`, `title`, `content`, `photo`, `created_at`, `updated_at`) VALUES
-(1, 'Magni rem quo unde n', '<p>hghghjghj</p>', 'about/photos/qQ1k3gUzBlsHBh3d9R6LmRGzpuR6Os1xJR4x4VdP.png', '2026-01-05 23:39:53', '2026-01-05 23:39:53');
+(1, 'Test', '<p>Test</p>', 'about/photos/mAjwzGN435NVfFOdhafXwWG8Rk9IdaymOYQXIwQJ.png', '2026-01-05 23:39:53', '2026-02-01 23:11:06');
 
 -- --------------------------------------------------------
 

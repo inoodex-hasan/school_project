@@ -358,21 +358,21 @@
           <div class="row gy-4">
             <div class="col-lg-3">
               <a href="{{ asset('frontend_assets/demo3/assets/img/gallery/1.jpeg') }}" class="gallery_item popup-image">
-                <img class="" src="assets/img/gallery/1.jpeg" alt="" />
+                <img class="" src="{{ asset('frontend_assets/demo3/assets/img/gallery/1.jpeg') }}" alt="" />
               </a>
             </div>
             <div class="col-lg-3">
               <a href="{{ asset('frontend_assets/demo3/assets/img/gallery/2.jpeg') }}" class="gallery_item popup-image">
-                <img src="assets/img/gallery/2.jpeg" alt="" />
+                <img src="{{ asset('frontend_assets/demo3/assets/img/gallery/2.jpeg') }}" alt="" />
               </a>
             </div>
             <div class="col-lg-3">
-              <a href="assets/img/gallery/3.jpeg" class="gallery_item popup-image">
+              <a href="{{ asset('frontend_assets/demo3/assets/img/gallery/3.jpeg') }}" class="gallery_item popup-image">
                 <img src="{{ asset('frontend_assets/demo3/assets/img/gallery/3.jpeg') }}" alt="" />
               </a>
             </div>
             <div class="col-lg-3">
-              <a href="assets/img/gallery/4.jpeg" class="gallery_item popup-image">
+              <a href="{{ asset('frontend_assets/demo3/assets/img/gallery/4.jpeg') }}" class="gallery_item popup-image">
                 <img src="{{ asset('frontend_assets/demo3/assets/img/gallery/4.jpeg') }}" alt="" />
               </a>
             </div>
